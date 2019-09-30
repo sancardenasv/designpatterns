@@ -28,11 +28,11 @@ class Person implements Human {
     }
 }
 
-class LoggingHondler implements InvocationHandler {
+class LoggingHandler implements InvocationHandler {
     private final Object target;
     private Map<String, Integer> calls = new HashMap<>();
 
-    public LoggingHondler(Object target) {
+    public LoggingHandler(Object target) {
         this.target = target;
     }
 
@@ -53,7 +53,7 @@ public class DynamicProxy {
 
     @SuppressWarnings("unchecked")
     public static <T> T withLogging(T target, Class<T> itf) {
-        return (T) Proxy.newProxyInstance(itf.getClassLoader(), new Class<?>[] {itf}, new LoggingHondler(target));
+        return (T) Proxy.newProxyInstance(itf.getClassLoader(), new Class<?>[] {itf}, new LoggingHandler(target));
     }
 
     public static void main(String[] args) {
