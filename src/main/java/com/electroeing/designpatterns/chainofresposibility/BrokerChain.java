@@ -1,4 +1,4 @@
-package com.electroeing.designpatterns.chainOfResposibility;
+package com.electroeing.designpatterns.chainofresposibility;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 // Query listener
-class Event<Args> {
+class Event<A> {
     private int index;
-    private Map<Integer, Consumer<Args>> handlers = new HashMap<>();
+    private Map<Integer, Consumer<A>> handlers = new HashMap<>();
 
-    public int subscribe(Consumer<Args> handler) {
+    public int subscribe(Consumer<A> handler) {
         int i = index;
         handlers.put(index++, handler);
         return i;
@@ -22,8 +22,8 @@ class Event<Args> {
         handlers.remove(key);
     }
 
-    public void fire(Args args) {
-        for (Consumer<Args> handler : handlers.values()) {
+    public void fire(A args) {
+        for (Consumer<A> handler : handlers.values()) {
             handler.accept(args);
         }
     }
@@ -34,7 +34,6 @@ class Query {
     enum Argument {
         ATTACK, DEFENSE
     }
-
     public Argument argument;
     public int result;
 

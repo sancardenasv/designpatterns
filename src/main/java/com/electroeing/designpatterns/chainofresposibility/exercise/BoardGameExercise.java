@@ -1,4 +1,4 @@
-package com.electroeing.designpatterns.chainOfResposibility.exercise;
+package com.electroeing.designpatterns.chainofresposibility.exercise;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,11 +11,11 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 // Query listener
-class Event<Args> {
+class Event<A> {
     private int index;
-    private Map<Integer, Consumer<Args>> handlers = new HashMap<>();
+    private Map<Integer, Consumer<A>> handlers = new HashMap<>();
 
-    public int subscribe(Consumer<Args> handler) {
+    public int subscribe(Consumer<A> handler) {
         int i = index;
         handlers.put(index++, handler);
         return i;
@@ -25,8 +25,8 @@ class Event<Args> {
         handlers.remove(key);
     }
 
-    public void fire(Args args) {
-        for (Consumer<Args> handler : handlers.values()) {
+    public void fire(A args) {
+        for (Consumer<A> handler : handlers.values()) {
             handler.accept(args);
         }
     }
@@ -34,7 +34,6 @@ class Event<Args> {
 
 class Query {
     public String entityName;
-
     public Statistic statistic;
     public int result;
 
