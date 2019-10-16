@@ -1,4 +1,4 @@
-package com.electroeing.designpatterns.strategy;
+package com.electroeing.designpatterns.strategy.exercise;
 
 import org.junit.jupiter.api.Test;
 
@@ -209,7 +209,7 @@ class Pair<X, Y> {
     }
 }
 
-public class StaticStrategy {
+public class StrategyCodingExercise {
     @Test
     public void positiveTestOrdinaryStrategy()
     {
